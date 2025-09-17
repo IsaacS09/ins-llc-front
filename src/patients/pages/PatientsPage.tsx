@@ -19,7 +19,7 @@ interface PatientFormData {
   signature?: string;
 }
 
-export const PatientPage = () => {
+export const PatientsPage = () => {
   const [formData, setFormData] = useState<PatientFormData>({
     name: '',
     status: '',

@@ -1,9 +1,6 @@
-import { Button } from '@/components/ui/button';
+import { RouterProvider } from 'react-router';
+import { appRouter } from './router/app.routes';
 
 export const IntegratedNursingSolutionsApp = () => {
-  return (
-    <div className="flex min-h-svh flex-col items-center justify-center">
-      <Button>Click me</Button>
-    </div>
-  );
+  return <RouterProvider router={appRouter} />;
 };
