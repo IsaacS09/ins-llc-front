@@ -1,11 +1,9 @@
-import { MainMenu } from '@/components/custom/MainMenu';
 import { Outlet } from 'react-router';
 
-export const AdminLayout = () => {
+export const PatientsLayout = () => {
   return (
     <div className="min-h-screen bg-white">
       <div className="max-w-7xl mx-auto p-6">
-        <MainMenu />
         <Outlet />
       </div>
     </div>

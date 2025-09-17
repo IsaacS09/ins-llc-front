@@ -22,8 +22,8 @@ export const MainMenu = () => {
           <NavigationMenuLink
             asChild
             className={cn(
-              isActive('/admin') && 'bg-slate-200',
-              'rounded-md p-2'
+              isActive('/admin') && 'bg-slate-100',
+              'rounded-md p-2 hover:bg-slate-300 focus:bg-slate-300'
             )}
           >
             <Link to="/admin">Home</Link>
@@ -35,8 +35,8 @@ export const MainMenu = () => {
           <NavigationMenuLink
             asChild
             className={cn(
-              isActive('/admin/patients') && 'bg-slate-200',
-              'rounded-md p-2'
+              isActive('/admin/patients') && 'bg-slate-100',
+              'rounded-md p-2 hover:bg-slate-300 focus:bg-slate-300'
             )}
           >
             <Link to="/admin/patients">Patients</Link>

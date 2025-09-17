@@ -6,12 +6,14 @@ import { createBrowserRouter, Navigate } from 'react-router';
 
 import { AdminLayout } from '@/layouts/AdminLayout';
 
-import { PatientsPage } from '@/patients/pages/PatientsPage';
+import { PatientList } from '@/patients/components/PatientList';
 import { HomePage } from '@/home/pages/HomePage';
+import { AddNewPatient } from '@/patients/components/AddNewPatient';
+import { PatientsLayout } from '@/layouts/PatientsLayout';
 
 export const appRouter = createBrowserRouter([
   {
-    path: '/admin',
+    path: 'admin',
     element: <AdminLayout />,
     children: [
       {
@@ -20,7 +22,17 @@ export const appRouter = createBrowserRouter([
       },
       {
         path: 'patients',
-        element: <PatientsPage />,
+        element: <PatientsLayout />,
+        children: [
+          {
+            index: true,
+            element: <PatientList />,
+          },
+          {
+            path: 'add-new-patient',
+            element: <AddNewPatient />,
+          },
+        ],
       },
       {
         path: '*',

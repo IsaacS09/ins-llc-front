@@ -19,7 +19,7 @@ interface PatientFormData {
   signature?: string;
 }
 
-export const PatientsPage = () => {
+export const AddNewPatient = () => {
   const [formData, setFormData] = useState<PatientFormData>({
     name: '',
     status: '',
@@ -181,7 +181,8 @@ export const PatientsPage = () => {
             <div className="flex gap-3 pt-4">
               <Button
                 type="submit"
-                className="bg-medical-header hover:bg-medical-header/90 text-white px-8 py-2"
+                variant="default"
+                className="text-white px-8 py-2"
               >
                 Submit
               </Button>
@@ -221,7 +222,7 @@ export const PatientsPage = () => {
             <Button
               type="button"
               onClick={handleSave}
-              className="w-full bg-medical-header hover:bg-medical-header/90 text-white py-3 text-base font-medium"
+              className="w-full text-white py-3 text-base font-medium"
             >
               SAVE
             </Button>
