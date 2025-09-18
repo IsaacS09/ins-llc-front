@@ -73,6 +73,7 @@ export const DocumentList = ({
   );
 
   const getFileIcon = (type: string) => {
+    console.log(type);
     return <FileText className="w-8 h-8 text-medical-600" />;
   };
 

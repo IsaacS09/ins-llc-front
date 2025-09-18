@@ -1,7 +1,6 @@
 import { useState, useRef } from 'react';
 import { Upload, File, Image } from 'lucide-react';
 import { Button } from '@/components/ui/button';
-import { useToast } from '@/hooks/use-toast';
 
 interface FileUploadAreaProps {
   type: 'photo' | 'document';
@@ -12,17 +11,17 @@ export const FileUploadArea = ({ type, onFileUpload }: FileUploadAreaProps) => {
   const [uploadedFile, setUploadedFile] = useState<File | null>(null);
   const [preview, setPreview] = useState<string | null>(null);
   const fileInputRef = useRef<HTMLInputElement>(null);
-  const { toast } = useToast();
+  // const { toast } = useToast();
 
   const handleFileSelect = (file: File) => {
     const maxSize = type === 'photo' ? 5 * 1024 * 1024 : 10 * 1024 * 1024; // 5MB for photos, 10MB for documents
 
     if (file.size > maxSize) {
-      toast({
-        title: 'File too large',
-        description: `File size must be less than ${maxSize / (1024 * 1024)}MB`,
-        variant: 'destructive',
-      });
+      // toast({
+      //   title: 'File too large',
+      //   description: `File size must be less than ${maxSize / (1024 * 1024)}MB`,
+      //   variant: 'destructive',
+      // });
       return;
     }
 
@@ -36,14 +35,14 @@ export const FileUploadArea = ({ type, onFileUpload }: FileUploadAreaProps) => {
           ];
 
     if (!allowedTypes.includes(file.type)) {
-      toast({
-        title: 'Invalid file type',
-        description:
-          type === 'photo'
-            ? 'Please upload an image file (JPG, PNG, GIF, WebP)'
-            : 'Please upload a PDF or Word document',
-        variant: 'destructive',
-      });
+      // toast({
+      //   title: 'Invalid file type',
+      //   description:
+      //     type === 'photo'
+      //       ? 'Please upload an image file (JPG, PNG, GIF, WebP)'
+      //       : 'Please upload a PDF or Word document',
+      //   variant: 'destructive',
+      // });
       return;
     }
 
@@ -56,10 +55,10 @@ export const FileUploadArea = ({ type, onFileUpload }: FileUploadAreaProps) => {
       reader.readAsDataURL(file);
     }
 
-    toast({
-      title: 'File uploaded',
-      description: `${file.name} uploaded successfully`,
-    });
+    // toast({
+    //   title: 'File uploaded',
+    //   description: `${file.name} uploaded successfully`,
+    // });
   };
 
   const handleDrop = (e: React.DragEvent) => {

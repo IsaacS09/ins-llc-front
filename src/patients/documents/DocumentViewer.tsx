@@ -1,15 +1,5 @@
-import { useState } from 'react';
-import {
-  ZoomIn,
-  ZoomOut,
-  Download,
-  Share2,
-  Printer,
-  RotateCcw,
-  FileText,
-} from 'lucide-react';
+import { Share2, FileText } from 'lucide-react';
 import { Button } from '@/components/ui/button';
-import { Separator } from '@/components/ui/separator';
 import { Badge } from '@/components/ui/badge';
 import type { Document } from '@/interfaces/document.interface';
 

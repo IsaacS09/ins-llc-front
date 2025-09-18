@@ -1,6 +1,5 @@
 import { useState, useRef, useEffect } from 'react';
 import { Button } from '@/components/ui/button';
-import { useToast } from '@/hooks/use-toast';
 
 interface SignatureAreaProps {
   onSignatureChange?: (signature: string) => void;
@@ -10,7 +9,6 @@ export const SignatureArea = ({ onSignatureChange }: SignatureAreaProps) => {
   const canvasRef = useRef<HTMLCanvasElement>(null);
   const [isDrawing, setIsDrawing] = useState(false);
   const [hasSignature, setHasSignature] = useState(false);
-  const { toast } = useToast();
 
   useEffect(() => {
     const canvas = canvasRef.current;
@@ -87,10 +85,10 @@ export const SignatureArea = ({ onSignatureChange }: SignatureAreaProps) => {
     setHasSignature(false);
     onSignatureChange?.('');
 
-    toast({
-      title: 'Signature cleared',
-      description: 'The signature area has been cleared',
-    });
+    // toast({
+    //   title: 'Signature cleared',
+    //   description: 'The signature area has been cleared',
+    // });
   };
 
   return (

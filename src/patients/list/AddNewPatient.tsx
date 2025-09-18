@@ -3,7 +3,6 @@ import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
 import { Textarea } from '@/components/ui/textarea';
 import { Label } from '@/components/ui/label';
-import { useToast } from '@/hooks/use-toast';
 import { FileUploadArea } from '@/components/custom/FileUploadArea';
 import { SignatureArea } from '@/components/custom/SignatureArea';
 import type { CreatePatient } from '@/interfaces/patient.interface';
@@ -32,7 +31,6 @@ export const AddNewPatient = () => {
     emergencyContact: '',
     birthday: '',
   });
-  const { toast } = useToast();
 
   const handleInputChange = (field: keyof CreatePatient, value: string) => {
     setFormData((prev) => ({ ...prev, [field]: value }));
@@ -58,18 +56,18 @@ export const AddNewPatient = () => {
 
     // Basic validation
     if (!formData.name || !formData.status || !formData.supervisor) {
-      toast({
-        title: 'Missing required fields',
-        description: 'Please fill in Name, Status, and Supervisor fields',
-        variant: 'destructive',
-      });
+      // toast({
+      //   title: 'Missing required fields',
+      //   description: 'Please fill in Name, Status, and Supervisor fields',
+      //   variant: 'destructive',
+      // });
       return;
     }
 
-    toast({
-      title: 'Patient record submitted',
-      description: 'The patient record has been successfully saved',
-    });
+    // toast({
+    //   title: 'Patient record submitted',
+    //   description: 'The patient record has been successfully saved',
+    // });
 
     console.log('Form submitted:', formData);
   };
