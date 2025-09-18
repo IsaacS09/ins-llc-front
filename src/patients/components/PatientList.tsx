@@ -10,73 +10,54 @@ import {
   TableRow,
 } from '@/components/ui/table';
 import { Badge } from '@/components/ui/badge';
-import { Search, Edit, Eye, Trash2 } from 'lucide-react';
+import { Search, Eye, Trash2 } from 'lucide-react';
 import { useNavigate } from 'react-router';
-
-interface Patient {
-  id: string;
-  name: string;
-  dob: string;
-  gender: string;
-  phone: string;
-  email: string;
-  lastVisit: string;
-  status: 'Active' | 'Inactive' | 'Discharged';
-}
+import type { Patient, PatientSummary } from '@/interfaces/patient.interface';
 
 export const PatientList = () => {
   const navigate = useNavigate();
   const [searchTerm, setSearchTerm] = useState('');
 
   // Sample patient data - in a real app this would come from a database
-  const [patients] = useState<Patient[]>([
+  const [patients] = useState<PatientSummary[]>([
     {
       id: 'P001',
       name: 'John Smith',
-      dob: '1985-03-15',
+      age: 35,
       gender: 'Male',
-      phone: '(555) 123-4567',
-      email: 'john.smith@email.com',
-      lastVisit: '2024-09-15',
       status: 'Active',
+      lastVisit: '2024-09-15',
     },
     {
       id: 'P002',
       name: 'Sarah Johnson',
-      dob: '1990-07-22',
+      age: 35,
       gender: 'Female',
-      phone: '(555) 987-6543',
-      email: 'sarah.j@email.com',
-      lastVisit: '2024-09-14',
       status: 'Active',
+      lastVisit: '2024-09-14',
     },
     {
       id: 'P003',
       name: 'Michael Brown',
-      dob: '1978-11-08',
+      age: 35,
       gender: 'Male',
-      phone: '(555) 456-7890',
-      email: 'm.brown@email.com',
+      status: 'Inactive',
       lastVisit: '2024-09-10',
-      status: 'Discharged',
     },
     {
       id: 'P004',
       name: 'Emily Davis',
-      dob: '1992-05-30',
+      age: 35,
       gender: 'Female',
-      phone: '(555) 321-9876',
-      email: 'emily.davis@email.com',
-      lastVisit: '2024-08-28',
       status: 'Inactive',
+      lastVisit: '2024-08-28',
     },
   ]);
 
   const filteredPatients = patients.filter(
     (patient) =>
       patient.name.toLowerCase().includes(searchTerm.toLowerCase()) ||
-      patient.id.toLowerCase().includes(searchTerm.toLowerCase()) ||
-      patient.email.toLowerCase().includes(searchTerm.toLowerCase())
+      patient.id.toLowerCase().includes(searchTerm.toLowerCase())
   );
 
   const getStatusVariant = (status: Patient['status']) => {
@@ -85,8 +66,6 @@ export const PatientList = () => {
         return 'default';
       case 'Inactive':
         return 'secondary';
-      case 'Discharged':
-        return 'outline';
       default:
         return 'secondary';
     }
@@ -94,6 +73,9 @@ export const PatientList = () => {
 
   const handleAddNewPatient = () => {
     navigate(`./add-new-patient`);
+  };
+  const handleViewPatient = (id: string) => {
+    navigate(`./patient/${id}`);
   };
 
   return (
@@ -130,12 +112,10 @@ export const PatientList = () => {
             <TableRow>
               <TableHead>Patient ID</TableHead>
               <TableHead>Name</TableHead>
-              <TableHead>Date of Birth</TableHead>
+              <TableHead>Age</TableHead>
               <TableHead>Gender</TableHead>
-              <TableHead>Phone</TableHead>
-              <TableHead>Email</TableHead>
-              <TableHead>Last Visit</TableHead>
               <TableHead>Status</TableHead>
+              <TableHead>Last Visit</TableHead>
               <TableHead className="text-center">Actions</TableHead>
             </TableRow>
           </TableHeader>
@@ -144,27 +124,24 @@ export const PatientList = () => {
               <TableRow key={patient.id}>
                 <TableCell className="font-medium">{patient.id}</TableCell>
                 <TableCell>{patient.name}</TableCell>
-                <TableCell>
-                  {new Date(patient.dob).toLocaleDateString()}
-                </TableCell>
+                <TableCell>{patient.age}</TableCell>
                 <TableCell>{patient.gender}</TableCell>
-                <TableCell>{patient.phone}</TableCell>
-                <TableCell>{patient.email}</TableCell>
-                <TableCell>
-                  {new Date(patient.lastVisit).toLocaleDateString()}
-                </TableCell>
                 <TableCell>
                   <Badge variant={getStatusVariant(patient.status)}>
                     {patient.status}
                   </Badge>
                 </TableCell>
                 <TableCell>
+                  {new Date(patient.lastVisit).toLocaleDateString()}
+                </TableCell>
+                <TableCell>
                   <div className="flex justify-center gap-2">
-                    <Button variant="ghost" size="sm">
+                    <Button
+                      variant="ghost"
+                      size="sm"
+                      onClick={() => handleViewPatient(patient.id)}
+                    >
                       <Eye className="h-4 w-4" />
-                    </Button>
-                    <Button variant="ghost" size="sm">
-                      <Edit className="h-4 w-4" />
                     </Button>
                     <Button
                       variant="ghost"

@@ -6,32 +6,35 @@ import { Label } from '@/components/ui/label';
 import { useToast } from '@/hooks/use-toast';
 import { FileUploadArea } from '@/components/custom/FileUploadArea';
 import { SignatureArea } from '@/components/custom/SignatureArea';
-
-interface PatientFormData {
-  name: string;
-  status: string;
-  supervisor: string;
-  startDate: string;
-  endDate: string;
-  notes: string;
-  photo?: File;
-  documents?: File[];
-  signature?: string;
-}
+import type { CreatePatient } from '@/interfaces/patient.interface';
+import {
+  Select,
+  SelectContent,
+  SelectItem,
+  SelectTrigger,
+  SelectValue,
+} from '@/components/ui/select';
+import { Link } from 'react-router';
+import { ChevronLeft } from 'lucide-react';
 
 export const AddNewPatient = () => {
-  const [formData, setFormData] = useState<PatientFormData>({
+  const [formData, setFormData] = useState<CreatePatient>({
     name: '',
-    status: '',
+    status: 'Active',
     supervisor: '',
-    startDate: '',
-    endDate: '',
     notes: '',
     documents: [],
+    photo: undefined,
+    haveSignature: false,
+    age: 0,
+    gender: 'Male',
+    address: '',
+    emergencyContact: '',
+    birthday: '',
   });
   const { toast } = useToast();
 
-  const handleInputChange = (field: keyof PatientFormData, value: string) => {
+  const handleInputChange = (field: keyof CreatePatient, value: string) => {
     setFormData((prev) => ({ ...prev, [field]: value }));
   };
 
@@ -71,62 +74,61 @@ export const AddNewPatient = () => {
     console.log('Form submitted:', formData);
   };
 
-  const handleClear = () => {
-    setFormData({
-      name: '',
-      status: '',
-      supervisor: '',
-      startDate: '',
-      endDate: '',
-      notes: '',
-      documents: [],
-    });
-
-    toast({
-      title: 'Form cleared',
-      description: 'All form fields have been cleared',
-    });
-  };
-
-  const handleSave = () => {
-    toast({
-      title: 'Patient record saved',
-      description: 'The patient record has been saved as draft',
-    });
-  };
-
   return (
-    <div className="bg-white min-h-screen">
-      <form onSubmit={handleSubmit} className="p-6 max-w-7xl mx-auto">
-        <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
+    <div className="bg-white min-h-auto">
+      <div className="flex flex-row items-center gap-4 mb-5">
+        <Link to={'/admin/patients'}>
+          <ChevronLeft className="hover:scale-150" />
+        </Link>
+        <h1 className="text-xl font-bold">Add New Patient</h1>
+      </div>
+
+      <form onSubmit={handleSubmit} className="max-w-7xl mx-auto">
+        <div className="grid grid-cols-2 lg:grid-cols-2 gap-8">
           {/* Main Form Section */}
-          <div className="lg:col-span-2 space-y-6">
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-              <div className="space-y-2">
-                <Label htmlFor="name">Name</Label>
+          <div className="lg:col-span-1 space-y-6">
+            <h2 className="text-lg font-medium">Information</h2>
+            <div className="grid grid-cols-2 md:grid-cols-2 gap-4">
+              <div className="space-y-2 col-span-2 md:col-span-2">
+                <Label htmlFor="name">Full Name</Label>
                 <Input
                   id="name"
                   value={formData.name}
                   onChange={(e) => handleInputChange('name', e.target.value)}
                   className="border-gray-400"
-                  required
                 />
               </div>
 
               <div className="space-y-2">
                 <Label htmlFor="status">Status</Label>
-                <Input
-                  id="status"
+
+                <Select
                   value={formData.status}
-                  onChange={(e) => handleInputChange('status', e.target.value)}
+                  defaultValue={formData.status}
+                  onValueChange={(value) => handleInputChange('status', value)}
+                >
+                  <SelectTrigger className="w-full border-gray-400">
+                    <SelectValue placeholder="Select a status" />
+                  </SelectTrigger>
+                  <SelectContent>
+                    <SelectItem value="Active">Active</SelectItem>
+                    <SelectItem value="Inactive">Inactive</SelectItem>
+                  </SelectContent>
+                </Select>
+              </div>
+
+              <div className="space-y-2">
+                <Label htmlFor="age">Age</Label>
+                <Input
+                  id="age"
+                  value={formData.age}
+                  onChange={(e) => handleInputChange('age', e.target.value)}
                   className="border-gray-400"
-                  required
+                  type="number"
                 />
               </div>
-            </div>
 
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-              <div className="space-y-2">
+              <div className="space-y-2 col-span-2 md:col-span-2">
                 <Label htmlFor="supervisor">Supervisor</Label>
                 <Input
                   id="supervisor"
@@ -135,98 +137,104 @@ export const AddNewPatient = () => {
                     handleInputChange('supervisor', e.target.value)
                   }
                   className="border-gray-400"
-                  required
                 />
               </div>
 
               <div className="space-y-2">
-                <Label htmlFor="startDate">Start date</Label>
+                <Label htmlFor="gender">Gender</Label>
+                <Select
+                  value={formData.gender}
+                  onValueChange={(value) => handleInputChange('gender', value)}
+                >
+                  <SelectTrigger className="w-full border-gray-400">
+                    <SelectValue />
+                  </SelectTrigger>
+                  <SelectContent>
+                    <SelectItem value="Male">Male</SelectItem>
+                    <SelectItem value="Female">Female</SelectItem>
+                  </SelectContent>
+                </Select>
+              </div>
+
+              <div className="space-y-2">
+                <Label htmlFor="birthday">Date of Birth</Label>
                 <Input
-                  id="startDate"
-                  type="date"
-                  value={formData.startDate}
+                  id="birthday"
+                  value={formData.birthday}
                   onChange={(e) =>
-                    handleInputChange('startDate', e.target.value)
+                    handleInputChange('birthday', e.target.value)
                   }
                   className="border-gray-400"
                 />
               </div>
-            </div>
 
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-              <div className="space-y-2">
-                <Label htmlFor="endDate">End date</Label>
+              <div className="space-y-2 col-span-2 md:col-span-2">
+                <Label htmlFor="address">Address</Label>
                 <Input
-                  id="endDate"
-                  type="date"
-                  value={formData.endDate}
-                  onChange={(e) => handleInputChange('endDate', e.target.value)}
+                  id="address"
+                  value={formData.address}
+                  onChange={(e) => handleInputChange('address', e.target.value)}
                   className="border-gray-400"
                 />
               </div>
-            </div>
 
-            <div className="space-y-2">
-              <Label htmlFor="notes">Notes</Label>
-              <Textarea
-                id="notes"
-                value={formData.notes}
-                onChange={(e) => handleInputChange('notes', e.target.value)}
-                className="border-gray-400 min-h-[120px]"
-                placeholder="Enter any additional notes here..."
-              />
-            </div>
+              <div className="space-y-2 col-span-2 md:col-span-2">
+                <Label htmlFor="emergencyContact">Emergency Contact</Label>
+                <Input
+                  id="emergencyContact"
+                  value={formData.emergencyContact}
+                  onChange={(e) =>
+                    handleInputChange('emergencyContact', e.target.value)
+                  }
+                  className="border-gray-400"
+                />
+              </div>
 
-            {/* Action Buttons */}
-            <div className="flex gap-3 pt-4">
-              <Button
-                type="submit"
-                variant="default"
-                className="text-white px-8 py-2"
-              >
-                Submit
-              </Button>
-              <Button
-                type="button"
-                variant="secondary"
-                onClick={handleClear}
-                className="px-8 py-2"
-              >
-                Clear
-              </Button>
-            </div>
-
-            {/* Document Upload Section */}
-            <div className="space-y-4 border-t pt-6">
-              <h3 className="text-lg font-medium">Documents</h3>
-              <FileUploadArea
-                type="document"
-                onFileUpload={handleDocumentUpload}
-              />
+              <div className="space-y-2 col-span-2 md:col-span-2">
+                <Label htmlFor="notes">Notes</Label>
+                <Textarea
+                  id="notes"
+                  value={formData.notes}
+                  onChange={(e) => handleInputChange('notes', e.target.value)}
+                  className="border-gray-400 min-h-[120px]"
+                  placeholder="Enter any additional notes here..."
+                />
+              </div>
             </div>
           </div>
 
-          {/* Right Sidebar */}
-          <div className="space-y-6">
-            {/* Photo Upload */}
-            <div className="space-y-4">
-              <FileUploadArea type="photo" onFileUpload={handlePhotoUpload} />
-            </div>
+          <div className="lg:col-span-1 gap-4">
+            <div className="grid grid-cols-1 md:grid-cols-1 gap-4">
+              {/* Document Upload Section */}
+              <h2 className="text-lg font-medium">Documents</h2>
+              <div className="space-y-2">
+                <FileUploadArea
+                  type="document"
+                  onFileUpload={handleDocumentUpload}
+                />
+              </div>
 
-            {/* Signature Area */}
-            <div className="space-y-4">
-              <SignatureArea onSignatureChange={handleSignatureChange} />
-            </div>
+              {/* Photo Upload */}
+              <h2 className="text-lg font-medium">Photo</h2>
+              <div className="space-y-2">
+                <FileUploadArea type="photo" onFileUpload={handlePhotoUpload} />
+              </div>
 
-            {/* Save Button */}
-            <Button
-              type="button"
-              onClick={handleSave}
-              className="w-full text-white py-3 text-base font-medium"
-            >
-              SAVE
-            </Button>
+              {/* Signature Area */}
+              <div className="space-y-2">
+                <SignatureArea onSignatureChange={handleSignatureChange} />
+              </div>
+            </div>
           </div>
+        </div>
+        {/* Save Button */}
+        <div className="flex justify-end w-full mt-5">
+          <Button
+            type="submit"
+            className="w-full text-white py-3 text-base font-medium"
+          >
+            Save
+          </Button>
         </div>
       </form>
     </div>

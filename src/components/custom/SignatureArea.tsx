@@ -95,7 +95,7 @@ export const SignatureArea = ({ onSignatureChange }: SignatureAreaProps) => {
 
   return (
     <div className="space-y-3">
-      <label className="text-sm font-medium">Sign</label>
+      <label className="text-lg font-medium">Sign</label>
       <div className="border border-border rounded bg-white">
         <canvas
           ref={canvasRef}

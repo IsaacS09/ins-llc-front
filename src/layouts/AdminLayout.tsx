@@ -4,8 +4,10 @@ import { Outlet } from 'react-router';
 export const AdminLayout = () => {
   return (
     <div className="min-h-screen bg-white">
-      <div className="max-w-7xl mx-auto p-6">
+      <header className="flex min-w-full bg-sky-900 justify-center">
         <MainMenu />
+      </header>
+      <div className="max-w-7xl mx-auto">
         <Outlet />
       </div>
     </div>

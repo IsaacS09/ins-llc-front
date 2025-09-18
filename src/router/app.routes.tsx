@@ -10,6 +10,7 @@ import { PatientList } from '@/patients/components/PatientList';
 import { HomePage } from '@/home/pages/HomePage';
 import { AddNewPatient } from '@/patients/components/AddNewPatient';
 import { PatientsLayout } from '@/layouts/PatientsLayout';
+import { PatientTabs } from '@/patients/components/PatientTabs';
 
 export const appRouter = createBrowserRouter([
   {
@@ -31,6 +32,10 @@ export const appRouter = createBrowserRouter([
           {
             path: 'add-new-patient',
             element: <AddNewPatient />,
+          },
+          {
+            path: 'patient/:patientId',
+            element: <PatientTabs />,
           },
         ],
       },
