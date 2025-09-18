@@ -6,11 +6,11 @@ import { createBrowserRouter, Navigate } from 'react-router';
 
 import { AdminLayout } from '@/layouts/AdminLayout';
 
-import { PatientList } from '@/patients/components/PatientList';
+import { PatientList } from '@/patients/list/PatientList';
 import { HomePage } from '@/home/pages/HomePage';
-import { AddNewPatient } from '@/patients/components/AddNewPatient';
+import { AddNewPatient } from '@/patients/list/AddNewPatient';
 import { PatientsLayout } from '@/layouts/PatientsLayout';
-import { PatientTabs } from '@/patients/components/PatientTabs';
+import { PatientTabs } from '@/patients/PatientTabs';
 
 export const appRouter = createBrowserRouter([
   {

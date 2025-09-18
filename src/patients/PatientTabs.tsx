@@ -1,9 +1,10 @@
 import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs';
 import { useMemo } from 'react';
 import { Link, useParams, useSearchParams } from 'react-router';
-import { PatientDetail } from './PatientDetail';
+import { PatientDetail } from './detail/PatientDetail';
 import { ChevronLeft } from 'lucide-react';
-import { AddNewPatient } from './AddNewPatient';
+import { AddNewPatient } from './list/AddNewPatient';
+import { DocumentManagement } from './documents/DocumentManagement';
 
 export const PatientTabs = () => {
   const { patientId = '' } = useParams();
@@ -48,7 +49,7 @@ export const PatientTabs = () => {
         </TabsContent>
         <TabsContent value="documents">
           {/* Show Favorites*/}
-          <AddNewPatient />
+          <DocumentManagement />
         </TabsContent>
         <TabsContent value="schedule">
           {/* Show Heroes*/}
