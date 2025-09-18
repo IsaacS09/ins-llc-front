@@ -2,15 +2,7 @@ import { useState } from 'react';
 import { FileText, Folder, Search } from 'lucide-react';
 import { Input } from '@/components/ui/input';
 import { cn } from '@/lib/utils';
-
-interface Document {
-  id: string;
-  name: string;
-  type: string;
-  size: string;
-  dateModified: string;
-  url: string;
-}
+import type { Document } from '@/interfaces/document.interface';
 
 interface DocumentListProps {
   onDocumentSelect: (document: Document) => void;
@@ -25,7 +17,7 @@ const mockDocuments: Document[] = [
     type: 'application/pdf',
     size: '2.3 MB',
     dateModified: '2024-01-15',
-    url: '/api/placeholder/400/600',
+    url: '/ins-llc.pdf',
   },
   {
     id: '2',

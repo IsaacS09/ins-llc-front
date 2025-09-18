@@ -3,7 +3,6 @@ import { useMemo } from 'react';
 import { Link, useParams, useSearchParams } from 'react-router';
 import { PatientDetail } from './detail/PatientDetail';
 import { ChevronLeft } from 'lucide-react';
-import { AddNewPatient } from './list/AddNewPatient';
 import { DocumentManagement } from './documents/DocumentManagement';
 
 export const PatientTabs = () => {
@@ -29,7 +28,7 @@ export const PatientTabs = () => {
         <Link to={'/admin/patients'}>
           <ChevronLeft className="hover:scale-150" />
         </Link>
-        <h1 className="text-xl font-bold">Patient</h1>
+        <h1 className="text-xl font-bold">Patient - #{patientId}</h1>
       </div>
       <Tabs value={selectedTab} className="mb-8">
         <TabsList className="grid w-full grid-cols-4 mb-4">

@@ -6,15 +6,7 @@ import {
 } from '@/components/ui/resizable';
 import { DocumentList } from './DocumentList';
 import { DocumentViewer } from './DocumentViewer';
-
-interface Document {
-  id: string;
-  name: string;
-  type: string;
-  size: string;
-  dateModified: string;
-  url: string;
-}
+import type { Document } from '@/interfaces/document.interface';
 
 export const DocumentManagement = () => {
   const [selectedDocument, setSelectedDocument] = useState<Document | null>(
