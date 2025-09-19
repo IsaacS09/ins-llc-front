@@ -2,7 +2,7 @@
 // import { lazy } from 'react';
 // const SearchPage = lazy(() => import('@/heroes/pages/search/SearchPage'));
 // .then((module) => ({default: module.SearchPage}))
-import { createBrowserRouter, Navigate } from 'react-router';
+import { createHashRouter, Navigate } from 'react-router';
 
 import { AdminLayout } from '@/layouts/AdminLayout';
 
@@ -13,9 +13,8 @@ import { PatientTabs } from '@/patients/PatientTabs';
 import { Login } from '@/auth/Login';
 import { ProtectedRoute } from '@/components/custom/ProtectedRoute';
 
-// export const appRouter = createHashRouter([
-
-export const appRouter = createBrowserRouter([
+// export const appRouter = createBrowserRouter([
+export const appRouter = createHashRouter([
   {
     path: 'login',
     element: <Login />,
