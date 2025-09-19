@@ -2,25 +2,35 @@
 // import { lazy } from 'react';
 // const SearchPage = lazy(() => import('@/heroes/pages/search/SearchPage'));
 // .then((module) => ({default: module.SearchPage}))
-import { createHashRouter, Navigate } from 'react-router';
+import { createBrowserRouter, Navigate } from 'react-router';
 
 import { AdminLayout } from '@/layouts/AdminLayout';
 
 import { PatientList } from '@/patients/list/PatientList';
-import { HomePage } from '@/home/pages/HomePage';
 import { AddNewPatient } from '@/patients/list/AddNewPatient';
 import { PatientsLayout } from '@/layouts/PatientsLayout';
 import { PatientTabs } from '@/patients/PatientTabs';
+import { Login } from '@/auth/Login';
+import { ProtectedRoute } from '@/components/custom/ProtectedRoute';
 
-// export const appRouter = createBrowserRouter([
-export const appRouter = createHashRouter([
+// export const appRouter = createHashRouter([
+
+export const appRouter = createBrowserRouter([
+  {
+    path: 'login',
+    element: <Login />,
+  },
   {
     path: 'admin',
-    element: <AdminLayout />,
+    element: (
+      <ProtectedRoute requiredRole="admin">
+        <AdminLayout />
+      </ProtectedRoute>
+    ),
     children: [
       {
         index: true,
-        element: <HomePage />,
+        element: <Navigate to="patients" replace />,
       },
       {
         path: 'patients',
@@ -42,12 +52,12 @@ export const appRouter = createHashRouter([
       },
       {
         path: '*',
-        element: <Navigate to="/" />,
+        element: <Navigate to="/patients" />,
       },
     ],
   },
   {
     path: '*',
-    element: <Navigate to="/admin" />,
+    element: <Navigate to="/login" />,
   },
 ]);

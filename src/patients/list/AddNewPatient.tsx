@@ -229,7 +229,7 @@ export const AddNewPatient = () => {
         <div className="flex justify-end w-full mt-5">
           <Button
             type="submit"
-            className="w-full text-white py-3 text-base font-medium"
+            className="w-[200px] text-white py-3 text-base font-medium"
           >
             Save
           </Button>

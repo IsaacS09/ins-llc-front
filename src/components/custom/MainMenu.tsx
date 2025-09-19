@@ -15,28 +15,17 @@ export const MainMenu = () => {
   };
 
   return (
-    <NavigationMenu className="max-w-7xl py-5  justify-start">
+    <NavigationMenu className="max-w-7xl py-5 justify-start">
       <NavigationMenuList>
-        {/**Home */}
-        <NavigationMenuItem>
-          <NavigationMenuLink
-            asChild
-            className={cn(
-              isActive('/admin') && 'bg-sky-700',
-              'rounded-sm p-2 hover:bg-slate-300 focus:bg-slate-300 text-white'
-            )}
-          >
-            <Link to="/admin">Home</Link>
-          </NavigationMenuLink>
-        </NavigationMenuItem>
-
         {/**Search */}
         <NavigationMenuItem>
           <NavigationMenuLink
             asChild
             className={cn(
-              isActive('/admin/patients') && 'bg-sky-700',
-              'rounded-sm p-2 hover:bg-slate-300 focus:bg-slate-300 text-white'
+              isActive('/admin/patients')
+                ? 'bg-sky-100 text-sky-900'
+                : 'bg-sky-800 text-white',
+              'hover:bg-sky-200 focus:bg-sky-200  p-2'
             )}
           >
             <Link to="/admin/patients">Patients</Link>

@@ -35,7 +35,7 @@ export const PatientDetail = ({ patientId }: Props) => {
     notes: 'this is a note',
     address: '123 Main St, City, State 12345',
     emergencyContact: 'Jane Doe - (555) 987-6543',
-    photo: 'https://isaacs09.github.io/ins-llc-front/placeholder.svg',
+    photo: 'placeholder.svg',
     lastVisit: '2024-01-14',
     medicalTreatments: [
       {
