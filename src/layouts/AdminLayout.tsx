@@ -27,7 +27,7 @@ export const AdminLayout = () => {
     <div className="w-full ">
       {/* Top Bar */}
       <header className="h-16 border-b border-border bg-sky-900 shadow-sm">
-        <div className="flex items-center justify-between h-full px-4">
+        <div className="max-w-7xl mx-auto flex items-center justify-between h-full px-4">
           <MainMenu />
           <div className="flex items-center">
             <Button
@@ -76,7 +76,7 @@ export const AdminLayout = () => {
       </header>
 
       {/* Page Content */}
-      <main className=" max-w-7xl mx-autop-6">
+      <main className="max-w-7xl mx-auto p-6">
         <Outlet />
       </main>
     </div>
