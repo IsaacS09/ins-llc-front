@@ -2,7 +2,7 @@
 // import { lazy } from 'react';
 // const SearchPage = lazy(() => import('@/heroes/pages/search/SearchPage'));
 // .then((module) => ({default: module.SearchPage}))
-import { createHashRouter, Navigate } from 'react-router';
+import { createBrowserRouter, Navigate } from 'react-router';
 
 import { AdminLayout } from '@/modules/admin/layout/AdminLayout';
 
@@ -12,9 +12,10 @@ import { PatientsLayout } from '@/modules/patients/layout/PatientsLayout';
 import { PatientTabs } from '@/modules/patients/PatientTabs';
 import { Login } from '@/modules/auth/Login';
 import { ProtectedRoute } from '@/components/custom/ProtectedRoute';
+import { HomePage } from './modules/home/HomePage';
 
-// export const appRouter = createBrowserRouter([
-export const appRouter = createHashRouter([
+// export const appRouter = createHashRouter([
+export const appRouter = createBrowserRouter([
   {
     path: '/login',
     element: <Login />,
@@ -29,7 +30,11 @@ export const appRouter = createHashRouter([
     children: [
       {
         index: true,
-        element: <Navigate to="patients" replace />,
+        element: <Navigate to="home" replace />,
+      },
+      {
+        path: 'home',
+        element: <HomePage />,
       },
       {
         path: 'patients',

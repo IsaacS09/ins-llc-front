@@ -35,7 +35,7 @@ export const PatientDetail = ({ patientId }: Props) => {
     notes: 'this is a note',
     address: '123 Main St, City, State 12345',
     emergencyContact: 'Jane Doe - (555) 987-6543',
-    photo: 'placeholder.svg',
+    photo: 'https://placehold.co/250x250',
     lastVisit: '2024-01-14',
     medicalTreatments: [
       {
@@ -171,7 +171,7 @@ export const PatientDetail = ({ patientId }: Props) => {
           <CardContent className="space-y-4">
             <div className="flex w-full justify-center">
               <img
-                src={`/${patient.photo}` || '/placeholder.svg'}
+                src={`${patient.photo}` || '/placeholder.svg'}
                 alt={patient.name}
                 width={200}
                 height={200}
