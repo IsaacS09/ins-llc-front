@@ -9,7 +9,7 @@ import {
 } from '@/components/ui/card';
 import { Badge } from '@/components/ui/badge';
 import { CalendarIcon, Clock } from 'lucide-react';
-import { format, isSameDay } from 'date-fns';
+import { format } from 'date-fns';
 
 interface Appointment {
   id: string;
@@ -111,11 +111,11 @@ export const PatientSchedule = () => {
   );
 
   // Check if a date has appointments
-  const hasAppointments = (date: Date) => {
-    return appointmentDates.some((appointmentDate) =>
-      isSameDay(date, appointmentDate)
-    );
-  };
+  // const hasAppointments = (date: Date) => {
+  //   return appointmentDates.some((appointmentDate) =>
+  //     isSameDay(date, appointmentDate)
+  //   );
+  // };
 
   const selectedDateAppointments = selectedDate
     ? getAppointmentsForDate(selectedDate)

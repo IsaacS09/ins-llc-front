@@ -1,4 +1,4 @@
-import { Users, Calendar } from 'lucide-react';
+import { Users } from 'lucide-react';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { useNavigate } from 'react-router';
 
@@ -6,7 +6,6 @@ export const HomePage = () => {
   const navigation = useNavigate();
 
   const patientsToday = 12;
-  const upcomingAppointments = 8;
 
   const cards = [
     {
