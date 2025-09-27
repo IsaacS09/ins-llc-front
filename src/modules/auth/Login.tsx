@@ -62,7 +62,7 @@ export const Login = () => {
           </h1>
         </div>
 
-        <Card className="medical-card">
+        <Card className="">
           <CardHeader className="text-center">
             <CardTitle className="flex items-center justify-center gap-2">
               <Shield className="w-5 h-5 text-primary" />
@@ -79,7 +79,7 @@ export const Login = () => {
                   placeholder="Enter your username"
                   value={username}
                   onChange={(e) => setUsername(e.target.value)}
-                  className="transition-medical"
+                  className=""
                 />
               </div>
               <div className="space-y-2">
@@ -90,14 +90,10 @@ export const Login = () => {
                   placeholder="Enter your password"
                   value={password}
                   onChange={(e) => setPassword(e.target.value)}
-                  className="transition-medical"
+                  className=""
                 />
               </div>
-              <Button
-                type="submit"
-                className="w-full medical-button"
-                disabled={isLoading}
-              >
+              <Button type="submit" className="w-full" disabled={isLoading}>
                 {isLoading ? (
                   <div className="flex items-center gap-2">
                     <div className="animate-spin rounded-full h-4 w-4 border-b-2 border-primary-foreground"></div>

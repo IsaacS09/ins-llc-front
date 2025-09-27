@@ -1,9 +1,11 @@
 import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs';
 import { useMemo } from 'react';
 import { Link, useParams, useSearchParams } from 'react-router';
-import { PatientDetail } from './detail/PatientDetail';
+import { PatientDetail } from './tab-detail/PatientDetail';
 import { ChevronLeft } from 'lucide-react';
-import { DocumentManagement } from './documents/DocumentManagement';
+import { DocumentManagement } from './tab-documents/DocumentManagement';
+import { PatientSchedule } from './tab-schedule/PatientSchedule';
+import { PatientEmar } from './tab-emar/PatientEmar';
 
 export const PatientTabs = () => {
   const { patientId = '' } = useParams();
@@ -11,7 +13,7 @@ export const PatientTabs = () => {
   const activeTab = searchParams.get('tab') ?? 'detail';
 
   const selectedTab = useMemo(() => {
-    const validTabs = ['detail', 'documents', 'schedule'];
+    const validTabs = ['detail', 'documents', 'schedule', 'emar'];
     return validTabs.includes(activeTab) ? activeTab : 'detail';
   }, [activeTab]);
 
@@ -41,6 +43,9 @@ export const PatientTabs = () => {
           <TabsTrigger value="schedule" onClick={() => setTab('schedule')}>
             Schedule
           </TabsTrigger>
+          <TabsTrigger value="emar" onClick={() => setTab('emar')}>
+            eMar
+          </TabsTrigger>
         </TabsList>
         <TabsContent value="detail">
           {/* Show All */}
@@ -52,7 +57,11 @@ export const PatientTabs = () => {
         </TabsContent>
         <TabsContent value="schedule">
           {/* Show Heroes*/}
-          {/* {<HeroGrid heroes={heroesResponse?.heroes ?? []} />} */}
+          <PatientSchedule />
+        </TabsContent>
+        <TabsContent value="emar">
+          {/* Show Heroes*/}
+          <PatientEmar />
         </TabsContent>
       </Tabs>
     </>

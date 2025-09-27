@@ -6,10 +6,10 @@ import { createBrowserRouter, Navigate } from 'react-router';
 
 import { AdminLayout } from '@/modules/admin/layout/AdminLayout';
 
-import { PatientList } from '@/modules/patients/list/PatientList';
-import { AddNewPatient } from '@/modules/patients/list/AddNewPatient';
-import { PatientsLayout } from '@/modules/patients/layout/PatientsLayout';
-import { PatientTabs } from '@/modules/patients/PatientTabs';
+import { PatientRecords } from '@/modules/patient/records/PatientRecords';
+import { AddNewPatient } from '@/modules/patient/add-new/AddNewPatient';
+import { PatientsLayout } from '@/modules/patient/layout/PatientsLayout';
+import { PatientTabs } from '@/modules/patient/PatientTabs';
 import { Login } from '@/modules/auth/Login';
 import { ProtectedRoute } from '@/components/custom/ProtectedRoute';
 import { HomePage } from './modules/home/HomePage';
@@ -42,7 +42,7 @@ export const appRouter = createBrowserRouter([
         children: [
           {
             index: true,
-            element: <PatientList />,
+            element: <PatientRecords />,
           },
           {
             path: 'add-new-patient',

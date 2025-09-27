@@ -383,7 +383,7 @@ export const PatientDetail = ({ patientId }: Props) => {
             <div className="space-y-4">
               {/* Add New Treatment Form */}
               {showAddTreatment && (
-                <Card className="border-2 border-dashed border-medical-accent">
+                <Card className="border-2 border-dashed border-slate-400">
                   <CardContent className="p-4">
                     <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                       <div>

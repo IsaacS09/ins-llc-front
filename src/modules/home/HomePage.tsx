@@ -24,7 +24,7 @@ export const HomePage = () => {
       icon: Calendar,
       description: 'Next 24 hours',
       onClick: () => {},
-      bgColor: 'bg-medical-header',
+      bgColor: 'bg-slate-600',
       textColor: 'text-primary-foreground',
     },
   ];

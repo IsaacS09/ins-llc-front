@@ -14,7 +14,7 @@ import { Search, Eye, Trash2 } from 'lucide-react';
 import { useNavigate } from 'react-router';
 import type { Patient, PatientSummary } from '@/interfaces/patient.interface';
 
-export const PatientList = () => {
+export const PatientRecords = () => {
   const navigate = useNavigate();
   const [searchTerm, setSearchTerm] = useState('');
 

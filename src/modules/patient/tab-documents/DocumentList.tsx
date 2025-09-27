@@ -74,7 +74,7 @@ export const DocumentList = ({
 
   const getFileIcon = (type: string) => {
     console.log(type);
-    return <FileText className="w-8 h-8 text-medical-600" />;
+    return <FileText className="w-8 h-8" />;
   };
 
   return (
@@ -100,12 +100,12 @@ export const DocumentList = ({
               className={cn(
                 'flex flex-col items-center p-4 rounded-lg border-2 cursor-pointer transition-all hover:bg-accent/50',
                 selectedDocumentId === document.id
-                  ? 'border-medical-500 bg-medical-50 dark:bg-medical-950'
-                  : 'border-border hover:border-medical-300'
+                  ? 'border-slate-500 bg-slate-50 dark:bg-slate-950'
+                  : 'border-border hover:border-slate-300'
               )}
             >
               <div className="relative mb-3">
-                <Folder className="w-12 h-12 text-medical-500" />
+                <Folder className="w-12 h-12 text-slate-500" />
                 <div className="absolute -bottom-1 -right-1 bg-background rounded-full p-1">
                   {getFileIcon(document.type)}
                 </div>
