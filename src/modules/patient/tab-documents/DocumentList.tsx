@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import { FileText, Folder, Search } from 'lucide-react';
+import { FileText, Search } from 'lucide-react';
 import { Input } from '@/components/ui/input';
 import { cn } from '@/lib/utils';
 import type { Document } from '@/interfaces/document.interface';
@@ -72,11 +72,6 @@ export const DocumentList = ({
     doc.name.toLowerCase().includes(searchTerm.toLowerCase())
   );
 
-  const getFileIcon = (type: string) => {
-    console.log(type);
-    return <FileText className="w-8 h-8" />;
-  };
-
   return (
     <div className="h-full flex flex-col bg-background">
       <div className="p-4 border-b border-border">
@@ -98,17 +93,14 @@ export const DocumentList = ({
               key={document.id}
               onClick={() => onDocumentSelect(document)}
               className={cn(
-                'flex flex-col items-center p-4 rounded-lg border-2 cursor-pointer transition-all hover:bg-accent/50',
+                'flex flex-col items-center p-4 rounded-lg border-2 cursor-pointer transition-all hover:bg-slate-100',
                 selectedDocumentId === document.id
-                  ? 'border-slate-500 bg-slate-50 dark:bg-slate-950'
-                  : 'border-border hover:border-slate-300'
+                  ? 'border-slate-400 bg-slate-200 dark:bg-slate-950'
+                  : 'border hover:border-slate-400'
               )}
             >
               <div className="relative mb-3">
-                <Folder className="w-12 h-12 text-slate-500" />
-                <div className="absolute -bottom-1 -right-1 bg-background rounded-full p-1">
-                  {getFileIcon(document.type)}
-                </div>
+                <FileText className="w-12 h-12 text-slate-600" />
               </div>
 
               <div className="text-center w-full">

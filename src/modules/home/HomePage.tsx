@@ -18,15 +18,15 @@ export const HomePage = () => {
       bgColor: 'bg-primary',
       textColor: 'text-primary-foreground',
     },
-    {
-      title: 'Upcoming Appointments',
-      count: upcomingAppointments,
-      icon: Calendar,
-      description: 'Next 24 hours',
-      onClick: () => {},
-      bgColor: 'bg-slate-600',
-      textColor: 'text-primary-foreground',
-    },
+    // {
+    //   title: 'Upcoming Appointments',
+    //   count: upcomingAppointments,
+    //   icon: Calendar,
+    //   description: 'Next 24 hours',
+    //   onClick: () => {},
+    //   bgColor: 'bg-slate-600',
+    //   textColor: 'text-primary-foreground',
+    // },
   ];
 
   return (

@@ -135,7 +135,7 @@ export const PatientSchedule = () => {
   };
 
   return (
-    <div className="p-6 space-y-6">
+    <>
       <div className="grid grid-cols-2 lg:grid-cols-2 gap-6">
         {/* Large Calendar Section */}
         <div className="lg:col-span-2">
@@ -221,6 +221,6 @@ export const PatientSchedule = () => {
           </CardContent>
         </Card>
       </div>
-    </div>
+    </>
   );
 };

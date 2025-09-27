@@ -149,9 +149,9 @@ export const PatientDetail = ({ patientId }: Props) => {
 
   return (
     <div className="container mx-auto  max-w-7xl">
-      <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
+      <div className="grid grid-cols-3 lg:grid-cols-3 gap-6">
         {/* Patient Information */}
-        <Card className="lg:col-span-1">
+        <Card className="md:col-span-1 lg:col-span-1">
           <CardHeader className="flex flex-row items-center justify-between">
             <CardTitle className="text-lg">
               Patient Information #{patient.id}
@@ -368,7 +368,7 @@ export const PatientDetail = ({ patientId }: Props) => {
         </Card>
 
         {/* Medical Treatments */}
-        <Card className="lg:col-span-2">
+        <Card className="md:col-span-2 lg:col-span-2">
           <CardHeader className="flex flex-row items-center justify-between">
             <CardTitle className="text-lg">Medical Treatments</CardTitle>
             <Button
