@@ -4,23 +4,23 @@
 // .then((module) => ({default: module.SearchPage}))
 import { createHashRouter, Navigate } from 'react-router';
 
-import { AdminLayout } from '@/layouts/AdminLayout';
+import { AdminLayout } from '@/modules/admin/layout/AdminLayout';
 
-import { PatientList } from '@/patients/list/PatientList';
-import { AddNewPatient } from '@/patients/list/AddNewPatient';
-import { PatientsLayout } from '@/layouts/PatientsLayout';
-import { PatientTabs } from '@/patients/PatientTabs';
-import { Login } from '@/auth/Login';
+import { PatientList } from '@/modules/patients/list/PatientList';
+import { AddNewPatient } from '@/modules/patients/list/AddNewPatient';
+import { PatientsLayout } from '@/modules/patients/layout/PatientsLayout';
+import { PatientTabs } from '@/modules/patients/PatientTabs';
+import { Login } from '@/modules/auth/Login';
 import { ProtectedRoute } from '@/components/custom/ProtectedRoute';
 
 // export const appRouter = createBrowserRouter([
 export const appRouter = createHashRouter([
   {
-    path: 'login',
+    path: '/login',
     element: <Login />,
   },
   {
-    path: 'admin',
+    path: '/admin',
     element: (
       <ProtectedRoute requiredRole="admin">
         <AdminLayout />
